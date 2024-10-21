@@ -1,0 +1,34 @@
+launch:
+
+# override arguments for the included launchs
+- arg:
+    name: "world"
+    default: "small"
+    choice: [value: small, value: large]
+- arg:
+    name: "gui"
+    default: "false"
+    choice: [value: "true", value: "false"]
+- arg:
+    name: "frontiers_output"
+    default: "log"
+    choice: [value: "screen", value: "log"]
+
+# include simulation 
+- include:
+    file: "$(find-pkg-share upc_mrn)/launch/sim.launch.py"
+
+# include SLAM 
+- include:
+    file: "$(find-pkg-share upc_mrn)/launch/slam.launch.yaml"
+
+# include navigation 
+- include:
+    file: "$(find-pkg-share upc_mrn)/launch/nav.launch.yaml"
+
+# run frontiers node
+- node:
+    pkg: "upc_mrn"
+    exec: "find_frontiers"
+    name: "find_frontiers"
+    output: "$(var frontiers_output)"

@@ -1,0 +1,17 @@
+launch:
+
+# args that can be set from the command line or a default will be used
+- arg:
+    name: "map_name"
+    default: "rooms.yaml"
+
+# include turtlebot4 navigation
+- include:
+    file: "$(find-pkg-share turtlebot4_navigation)/launch/localization.launch.py"
+    arg:
+    -
+      name: "map"
+      value: "$(find-pkg-share upc_mrn)/maps/$(var map_name)"
+    -
+      name: "params"
+      value: "$(find-pkg-share upc_mrn)/config/localization.yaml"

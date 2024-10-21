@@ -1,0 +1,9 @@
+launch:
+
+# include turtlebot4 navigation
+- include:
+    file: "$(find-pkg-share turtlebot4_navigation)/launch/slam.launch.py"
+    arg:
+    -
+      name: "params"
+      value: "$(find-pkg-share upc_mrn)/config/slam.yaml"

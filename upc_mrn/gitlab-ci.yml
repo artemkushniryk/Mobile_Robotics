@@ -1,0 +1,46 @@
+stages:
+  - upcmrn_script
+  - practices
+  
+image: osrf/ros:noetic-desktop-full
+
+############ YAML ANCHORS ############
+.practice1_template: &practice1_definition
+  - cd
+  - roslaunch roscpp_tutorials talker_listener.launch 2> roslaunch_error_messages.log &
+  - sleep 5
+  - rosnode kill -a
+  - echo "============ ROSLAUNCH OUTPUT:"
+  - cat roslaunch_error_messages.log
+  - echo "============"
+  - if [[ "$(cat roslaunch_error_messages.log)" == *"Shutdown request received."* ]]; then
+  -   echo "============= ROSLAUNCH roscpp_tutorials talker_listener FINISHED WITHOUT ANY PROBLEM! =================";
+  - else
+  -   exit 1
+  - fi
+  - roslaunch upc_mrn sim.launch gui:=false world:=empty 2> roslaunch_error_messages.log &
+  - sleep 5
+  - rosnode kill -a
+  - cat roslaunch_error_messages.log
+  - if [[ "$(cat roslaunch_error_messages.log)" == *"Shutdown request received."* ]]; then
+  -   echo "============= ROSLAUNCH upc_mrn sim FINISHED WITHOUT ANY PROBLEM! =================";
+  - else
+  -   exit 1
+  - fi
+
+############ SCRIPT ############
+script_test:
+  stage: upcmrn_script
+  before_script:
+    - apt-get update
+  script:
+    - cd ${CI_PROJECT_DIR}/scripts
+    - source upc_mrn_setup.sh
+    - roscd
+    - roscd upc_mrn
+    - *practice1_definition
+
+############ TEST ############
+#practice1_test:
+#  stage: practices
+#  script:

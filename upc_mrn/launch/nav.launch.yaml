@@ -1,0 +1,9 @@
+launch:
+
+# include turtlebot4 navigation
+- include:
+    file: "$(find-pkg-share turtlebot4_navigation)/launch/nav2.launch.py"
+    arg:
+    -
+      name: "params_file"
+      value: "$(find-pkg-share upc_mrn)/config/nav2.yaml"

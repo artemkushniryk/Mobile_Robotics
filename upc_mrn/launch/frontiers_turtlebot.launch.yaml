@@ -1,0 +1,25 @@
+launch:
+
+# override arguments for the included launchs
+- arg:
+    name: "world"
+    default: "real experiment"
+- arg:
+    name: "frontiers_output"
+    default: "log"
+    choice: [value: "screen", value: "log"]
+
+# include SLAM 
+- include:
+    file: "$(find-pkg-share upc_mrn)/launch/slam.launch.yaml"
+
+# include navigation 
+- include:
+    file: "$(find-pkg-share upc_mrn)/launch/nav.launch.yaml"
+
+# run frontiers node
+- node:
+    pkg: "upc_mrn"
+    exec: "find_frontiers"
+    name: "find_frontiers"
+    output: "$(var frontiers_output)"

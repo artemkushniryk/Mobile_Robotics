@@ -1,0 +1,17 @@
+<?xml version="1.0" ?>
+<robot name="turtlebot4" xmlns:xacro="http://ros.org/wiki/xacro">
+  <!-- Base create3 model -->
+  <xacro:include filename="$(find irobot_create_description)/urdf/create3.urdf.xacro" />
+  <xacro:include filename="$(find turtlebot4_description)/urdf/sensors/rplidar.urdf.xacro" />
+
+  <!-- Mechanical properties -->
+  <xacro:property name="rplidar_x_offset"              value="${0.393584*cm2m}"/>
+  <xacro:property name="rplidar_y_offset"              value="${0*cm2m}"/>
+  <xacro:property name="rplidar_z_offset"              value="${7.529272*cm2m}"/>
+
+  <!-- Turtlebot4 sensor definitions -->
+  <xacro:rplidar name="rplidar" parent_link="base_link" gazebo="$(arg gazebo)">
+    <origin xyz="${rplidar_x_offset} ${rplidar_y_offset} ${rplidar_z_offset + base_link_z_offset}"
+            rpy="0 0 ${pi/2}"/>
+  </xacro:rplidar>
+</robot>

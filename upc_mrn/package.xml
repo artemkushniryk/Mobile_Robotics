@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
+<package format="3">
+  <name>upc_mrn</name>
+  <version>0.0.0</version>
+  <description>TODO: Package description</description>
+  <maintainer email="joanvallve@todo.todo">joanvallve</maintainer>
+  <license>TODO: License declaration</license>
+
+  <buildtool_depend>ament_cmake</buildtool_depend>
+
+  <test_depend>ament_lint_auto</test_depend>
+  <test_depend>ament_lint_common</test_depend>
+
+  <!-- Turtlebot4 -->
+  <depend>turtlebot4_description</depend>
+  <depend>turtlebot4_msgs</depend>
+  <depend>turtlebot4_navigation</depend>
+  <depend>turtlebot4_node</depend>
+  <depend>turtlebot4_viz</depend>
+  <depend>turtlebot4_ignition_gui_plugins</depend>
+  <depend>turtlebot4_ignition_toolbox</depend>
+
+  <!-- Create3 -->
+  <depend>irobot_create_description</depend>
+  <depend>irobot_create_common_bringup</depend>
+  <depend>irobot_create_nodes</depend>
+  <depend>irobot_create_toolbox</depend>
+  <depend>irobot_create_ignition_bringup</depend>
+  <depend>irobot_create_ignition_toolbox</depend>
+
+  <!-- ROS IGN -->
+  <depend>ros_ign_interfaces</depend>
+  <depend>ros_ign_gazebo</depend>
+  <depend>ros_ign_bridge</depend>
+
+  <!-- Messages -->
+  <depend>std_msgs</depend>
+  <depend>geometry_msgs</depend>
+  <depend>irobot_create_msgs</depend>
+
+  <!-- Own messages -->
+  <buildtool_depend>rosidl_default_generators</buildtool_depend>
+  <exec_depend>rosidl_default_runtime</exec_depend>
+  <member_of_group>rosidl_interface_packages</member_of_group>
+
+  <export>
+    <build_type>ament_cmake</build_type>
+    <depend>rclcpp</depend>
+    <depend>std_msgs</depend>
+  </export>
+</package>
